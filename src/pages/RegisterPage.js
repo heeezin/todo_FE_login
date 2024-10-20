@@ -2,7 +2,11 @@ import React, { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import api from "../utils/api";
+<<<<<<< HEAD
 import { Link, useNavigate } from "react-router-dom";
+=======
+import { useNavigate } from "react-router-dom";
+>>>>>>> origin/main
 
 const RegisterPage = () => {
   const [name,setName] = useState('')
@@ -14,6 +18,7 @@ const RegisterPage = () => {
 
   const handleSubmit = async (e) =>{
     e.preventDefault()
+<<<<<<< HEAD
     
     try {
       if(password !== secpassword){
@@ -22,6 +27,13 @@ const RegisterPage = () => {
       if (!name || !email || !password || !secpassword) {
         setError('필수 정보를 모두 입력해 주세요.');
         return;
+=======
+
+    try {
+      if(password !== secpassword){
+        throw new Error("패스워드가 일치하지 않습니다. 다시 입력해 주세요.")
+        
+>>>>>>> origin/main
       }
       const res = await api.post('/user',{name,email,password})
       if(res.status===200){
@@ -57,6 +69,7 @@ const RegisterPage = () => {
           <Form.Label>re-enter the password</Form.Label>
           <Form.Control type="password" placeholder="re-enter the password"  onChange={(e)=>setSecPassword(e.target.value)} />
         </Form.Group>
+<<<<<<< HEAD
         <div className="error-box">{error && <div>{error}</div>}</div>
         <div className="button-box">
           <Button className="button-primary" type="submit">
@@ -64,6 +77,12 @@ const RegisterPage = () => {
           </Button>
           <span>계정이 있다면? <Link to="/login">로그인 하기</Link></span>
         </div>
+=======
+        {error && <div>{error}</div>}
+        <Button className="button-primary" type="submit">
+          회원가입
+        </Button>
+>>>>>>> origin/main
       </Form>
     </div>
   );

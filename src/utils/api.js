@@ -1,7 +1,11 @@
 import axios from "axios";
 
 const api = axios.create({
+<<<<<<< HEAD
   baseURL: `${process.env.REACT_APP_BACKEND_URL}/api`,
+=======
+  baseURL: `${process.env.REACT_APP_BACKEND_PROXY}/api`,
+>>>>>>> origin/main
   headers: {
     "Content-Type": "application/json",
     authorization: "Bearer " + localStorage.getItem("token"),

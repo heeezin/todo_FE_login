@@ -19,7 +19,11 @@ const TodoItem = ({ item, deleteItem, toggleComplete }) => {
               className="button-delete"
               onClick={() => toggleComplete(item._id)}
             >
+<<<<<<< HEAD
               {item.isComplete ? `미완료` : `완료`}
+=======
+              {item.isComplete ? `안끝남` : `끝남`}
+>>>>>>> origin/main
             </button>
           </div>
         </div>
