@@ -18,19 +18,15 @@ const RegisterPage = () => {
       return;
     }
     try {
-      if(password !== secpassword){
-        throw new Error("패스워드가 일치하지 않습니다. 다시 입력해 주세요.")
-      }
-      
       const res = await api.post('/user',{name,email,password})
       if(res.status===200){
         navigate('/login')
       } else {
         throw new Error(res.data.error.message)
       }
-      console.log('res',res)
     } catch (error) {
       setError(error.error.message)
+      console.log(error.error.message)
     }
   }
   return (
