@@ -27,7 +27,7 @@ const LoginPage = () => {
         setError('')
         navigate('/')
       }
-      throw new Error(res.data.error.message)
+      throw new Error(res.data.error)
     } catch (error) {
       setError(error.error.message)
     }
