@@ -58,6 +58,9 @@ button, .button-add, .button-delete, .button-primary {
   border-color: #5f6d6d;
   color: white;
 }
+.btn-primary:active{
+  background-color: #5f6d6d; 
+}
 button:hover, .button-add:hover, .button-delete:hover, .button-primary:hover {
   background-color: #5f6d6d;
 }
@@ -108,7 +111,7 @@ button:hover, .button-add:hover, .button-delete:hover, .button-primary:hover {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-top: 20px;
+  margin-top: 15px;
 }
 .button-box a {
   color: #a9adb3;

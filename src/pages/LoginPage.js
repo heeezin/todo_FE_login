@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 
 import { Link, useNavigate } from "react-router-dom";
@@ -14,13 +13,13 @@ const LoginPage = () => {
 
   const handleLogin = async (e) => {
     e.preventDefault()
-    
+    if (!email || !password) {
+      setError('이메일과 비밀번호를 입력해 주세요.');
+      return; 
+    }
     try {
       const res = await api.post('/user/login', { email, password })
-      if (!email || !password) {
-        setError('이메일과 비밀번호를 입력해 주세요.');
-        return; 
-      }
+      
       if (res.status === 200) {
         setUser(res.data.user)
         sessionStorage.setItem("token",res.data.token)
@@ -30,7 +29,7 @@ const LoginPage = () => {
       }
       throw new Error(res.data.error.message)
     } catch (error) {
-      setError(error.message)
+      setError(error.error.message)
     }
   }
   return (
@@ -50,9 +49,9 @@ const LoginPage = () => {
           {error && <div>{error}</div>}
         </div>
         <div className="button-box">
-          <Button type="submit" className="button-primary">
+          <button type="submit" className="button-primary">
             Login
-          </Button>
+          </button>
           <span>
             계정이 없다면? <Link to="/register">회원가입 하기</Link>
           </span>
