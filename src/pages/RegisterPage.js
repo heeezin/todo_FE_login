@@ -27,7 +27,7 @@ const RegisterPage = () => {
       if(res.status===200){
         navigate('/login')
       } else {
-        throw new Error(res.data.error)
+        throw new Error(res.data.error.message)
       }
       console.log('res',res)
     } catch (error) {

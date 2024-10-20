@@ -14,12 +14,13 @@ const LoginPage = () => {
 
   const handleLogin = async (e) => {
     e.preventDefault()
-    if (!email || !password) {
-      setError('이메일과 비밀번호를 입력해 주세요.');
-      return; 
-    }
+    
     try {
       const res = await api.post('/user/login', { email, password })
+      if (!email || !password) {
+        setError('이메일과 비밀번호를 입력해 주세요.');
+        return; 
+      }
       if (res.status === 200) {
         setUser(res.data.user)
         sessionStorage.setItem("token",res.data.token)
@@ -27,7 +28,7 @@ const LoginPage = () => {
         setError('')
         navigate('/')
       }
-      throw new Error(res.data.error)
+      throw new Error(res.data.error.message)
     } catch (error) {
       setError(error.message)
     }
