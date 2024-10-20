@@ -13,13 +13,15 @@ const RegisterPage = () => {
 
   const handleSubmit = async (e) =>{
     e.preventDefault()
-    if (!name || !email || !password || !secpassword) {
-      setError('필수 정보를 모두 입력해 주세요.');
-      return;
-    }
+    
     try {
+      if (!name || !email || !password || !secpassword) {
+        setError('필수 정보를 모두 입력해 주세요.');
+        return
+      }
       if(password !== secpassword){
-        throw new Error("패스워드가 일치하지 않습니다. 다시 입력해 주세요.")
+        setError("패스워드가 일치하지 않습니다. 다시 입력해 주세요.")
+        return
       }
       const res = await api.post('/user',{name,email,password})
       if(res.status===200){
@@ -27,6 +29,7 @@ const RegisterPage = () => {
       } else {
         throw new Error(res.data.error)
       }
+      console.log('res',res)
     } catch (error) {
       setError(error.error.message)
     }
