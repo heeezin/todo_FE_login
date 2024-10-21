@@ -44,7 +44,6 @@ h2 {
 input[type="email"],
 input[type="password"],
 input[type="string"] {
-  width: 100%;
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 5px;
@@ -163,7 +162,7 @@ button,
   white-space: nowrap;
 }
 .item-complete {
-  background-color: gray;
+  background-color: #d0d0d0;
 }
 .item-complete .todo-content {
   text-decoration: line-through;

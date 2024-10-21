@@ -1,31 +1,25 @@
 /* 투두 버튼 */
-.add-item-row {
+.add-item-row > div{
+  display: flex;
+  gap: 10px;
   align-items: center;
+  justify-content: space-between;
   margin-bottom: 30px;
 }
+.add-item-row input {flex-grow: 3;}
+.add-item-row button {flex-grow: 1;}
 .button-wrap {
   display: flex;
   align-items: center;
   gap: 5px;
 }
 .button-add {
-  width: 100%;
+  height: 46px;
   background-color: gray;
-}
-
-.button-add:hover {
-  background-color: white;
-  color: gray;
-  border: 2px solid gray;
 }
 
 .button-delete, .button-toggle {
   background-color: white;
   border: 2px solid gray;
   color: gray;
-}
-
-.button-delete:hover {
-  background-color: gray;
-  color: white;
 }

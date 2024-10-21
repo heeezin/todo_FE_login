@@ -13,7 +13,7 @@ const TodoItem = ({ item, deleteItem, updateComplete, updateTask }) => {
     <Row>
       <Col xs={12}>
         <div className={`todo-item ${item.isComplete ? "item-complete" : ""}`}>
-        <div div className="todo-content">
+        <div className="todo-content">
             {isEdit ? (
               <input type="text" value={editedTask} onChange={(e)=>setEditedTask(e.target.value)}/>
             ): (

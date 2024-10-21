@@ -12,20 +12,21 @@ const TodoPage = ({user,setUser}) => {
   const navigate = useNavigate()
 
   const getTasks = async () => {
-    const response = await api.get("/tasks");
-    console.log("taskList",response.data.data)
-    setTodoList(response.data.data);
+    const res = await api.get("/tasks");
+    const tasks = res.data.data
+    tasks.sort((a,b)=> a.isComplete - b.isComplete)
+    setTodoList(tasks);
   };
   useEffect(() => {
     getTasks();
   }, []);
   const addTodo = async () => {
     try {
-      const response = await api.post("/tasks", {
+      const res = await api.post("/tasks", {
         task: todoValue,
         isComplete: false,
       });
-      if (response.status === 200) {
+      if (res.status === 200) {
         getTasks();
       }
       setTodoValue("");
@@ -36,8 +37,8 @@ const TodoPage = ({user,setUser}) => {
   const deleteItem = async (id) => {
     try {
       console.log(id);
-      const response = await api.delete(`/tasks/${id}`);
-      if (response.status === 200) {
+      const res = await api.delete(`/tasks/${id}`);
+      if (res.status === 200) {
         getTasks();
       }
     } catch (error) {
@@ -47,10 +48,10 @@ const TodoPage = ({user,setUser}) => {
   const updateComplete = async (id) => {
     try {
       const task = todoList.find((item) => item._id === id);
-      const response = await api.put(`/tasks/${id}`, {
+      const res = await api.put(`/tasks/${id}`, {
         isComplete: !task.isComplete,
       });
-      if (response.status === 200) {
+      if (res.status === 200) {
         getTasks();
       }
     } catch (error) {
@@ -82,8 +83,8 @@ const TodoPage = ({user,setUser}) => {
           </div>
           <button onClick={handleLogout} className="button-logout">로그아웃</button>
         </div>
-      <Row className="add-item-row">
-        <Col xs={12} sm={10}>
+      <div className="add-item-row">
+        <div>
           <input
             type="text"
             placeholder="할일을 입력하세요"
@@ -91,13 +92,11 @@ const TodoPage = ({user,setUser}) => {
             className="input-box"
             value={todoValue}
           />
-        </Col>
-        <Col xs={12} sm={2}>
           <button onClick={addTodo} className="button-add">
             추가
           </button>
-        </Col>
-      </Row>
+        </div>
+      </div>
 
       <TodoBoard
         todoList={todoList}
