@@ -31,7 +31,7 @@ const RegisterPage = () => {
       }
       console.log('res',res)
     } catch (error) {
-      setError(error.error.message)
+      setError(error.message)
     }
   }
   return (
