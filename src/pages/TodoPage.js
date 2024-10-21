@@ -4,10 +4,12 @@ import api from "../utils/api";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
+import { useNavigate } from "react-router-dom";
 
-const TodoPage = () => {
+const TodoPage = ({user,setUser}) => {
   const [todoList, setTodoList] = useState([]);
   const [todoValue, setTodoValue] = useState("");
+  const navigate = useNavigate()
 
   const getTasks = async () => {
     const response = await api.get("/tasks");
@@ -31,7 +33,6 @@ const TodoPage = () => {
       console.log("error:", error);
     }
   };
-
   const deleteItem = async (id) => {
     try {
       console.log(id);
@@ -43,8 +44,7 @@ const TodoPage = () => {
       console.log("error", error);
     }
   };
-
-  const toggleComplete = async (id) => {
+  const updateComplete = async (id) => {
     try {
       const task = todoList.find((item) => item._id === id);
       const response = await api.put(`/tasks/${id}`, {
@@ -57,8 +57,31 @@ const TodoPage = () => {
       console.log("error", error);
     }
   };
+  const updateTask = async (id, updateValue) => {
+    try {
+      const res = await api.put(`/tasks/${id}`,{
+        task: updateValue
+      })
+      if(res.status === 200){
+        getTasks()
+      }
+    } catch (error) {
+      console.log('error',error)
+    }
+  }
+  const handleLogout = () => {
+    sessionStorage.removeItem('token')
+    setUser(null)
+    navigate('/login')
+  }
   return (
     <Container>
+        <div className="title">
+          <div className="user-name">
+            <span>{user.name}</span>님 환영합니다.
+          </div>
+          <button onClick={handleLogout} className="button-logout">로그아웃</button>
+        </div>
       <Row className="add-item-row">
         <Col xs={12} sm={10}>
           <input
@@ -79,7 +102,8 @@ const TodoPage = () => {
       <TodoBoard
         todoList={todoList}
         deleteItem={deleteItem}
-        toggleComplete={toggleComplete}
+        updateComplete={updateComplete}
+        updateTask={updateTask}
       />
     </Container>
   );

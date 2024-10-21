@@ -1,20 +1,33 @@
 body {
   margin: 0;
   padding: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #ebebeb !important; 
+  background-color: #ebebeb !important;
   color: #333;
 }
 
-h1, h2 {
+h1,
+h2 {
   color: #4a4a4a;
   font-weight: bold;
 }
-
+.title {
+  padding: 10px 0;
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  gap: 15px;
+}
+.user-name {
+  text-align: right;
+}
+.user-name span {
+  font-weight: bold;
+}
 .display-center {
   display: flex;
   flex-direction: column;
@@ -27,7 +40,10 @@ h1, h2 {
   border-radius: 10px;
 }
 
-.input-box, input[type="email"], input[type="password"], input[type="string"] {
+.input-box,
+input[type="email"],
+input[type="password"],
+input[type="string"] {
   width: 100%;
   padding: 10px;
   border: 1px solid #ccc;
@@ -39,32 +55,46 @@ h1, h2 {
   outline: none;
 }
 
-button, .button-add, .button-delete, .button-primary {
-  background-color: #7f8c8d;
+button,
+.button-logout,
+.button-add,
+.button-save,
+.button-cancel .button-delete,
+.button-primary,
+.button-toggle,
+.todo-content input {
+  background-color: gray;
   color: white;
   border: none;
-  padding: 10px 20px;
-  border-radius: 5px;
+  padding: 7px 13px;
+  border-radius: 5px !important;
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
 .button-primary.btn-primary {
-  background-color: #7f8c8d; 
-  border-color: #7f8c8d; 
+  background-color: #7f8c8d;
+  border-color: #7f8c8d;
   color: white;
 }
 .button-primary.btn-primary:hover {
-  background-color: #5f6d6d; 
+  background-color: #ccd0d0;
   border-color: #5f6d6d;
   color: white;
 }
-.btn-primary:active{
-  background-color: #5f6d6d; 
+.btn-primary:active {
+  background-color: #ccd0d0;
 }
-button:hover, .button-add:hover, .button-delete:hover, .button-primary:hover {
-  background-color: #5f6d6d;
+button:hover,
+.button-add:hover,
+.button-delete:hover,
+.button-primary:hover,
+.button-delete:hover,
+.button-logout:hover {
+  background-color: #b9b9b9 !important;
+  color: #fff;
 }
-.login-box, .register-box {
+.login-box,
+.register-box {
   background-color: #ffffff;
   border-radius: 10px;
   padding: 40px;
@@ -74,39 +104,84 @@ button:hover, .button-add:hover, .button-delete:hover, .button-primary:hover {
   border: 1px solid gray;
 }
 
-.login-box h1, .register-box h1 {
-  color: #6d6d6d; 
+.login-box h1,
+.register-box h1 {
+  color: #6d6d6d;
   font-size: 2em;
   margin-bottom: 20px;
   text-align: center;
 }
 
-.login-box label, .register-box label {
+.login-box label,
+.register-box label {
   font-weight: 700;
 }
 
 .todo-item {
   background-color: rgba(255, 255, 255, 0.8);
-  padding: 15px;
+  padding: 15px 10px;
   border-radius: 8px;
   margin-bottom: 10px;
   display: flex;
+  gap: 29px;
   justify-content: space-between;
   align-items: center;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  flex-wrap: wrap;
 }
 
-.todo-item.item-complete {
-  background-color: gainsboro;
-  color: white;
+.todo-content {
+  flex: 1;
+  padding: 10px;
+  max-width: 60%;
+  overflow-wrap: break-word;
+}
+
+.todo-content input {
+  width: 100%;
+  box-sizing: border-box;
+  background-color: white;
+  border: 2px solid gray;
+  color: gray;
+  cursor: auto;
+}
+
+.button-box {
+  display: flex;
+  gap: 5px;
+}
+
+button,
+.button-logout
+.button-add,
+.button-save,
+.button-cancel,
+.button-delete,
+.button-primary,
+.button-toggle {
+  padding: 8px 15px;
+  white-space: nowrap;
+}
+.item-complete {
+  background-color: gray;
 }
 .item-complete .todo-content {
-  text-decoration:line-through;
+  text-decoration: line-through;
+  color: #fff;
 }
 .todo-content {
-  padding: 1em;
+  padding: 10px;
 }
-.error-box {color: red; font-size: 15px;}
+.todo-content input {
+  background-color: white;
+  border: 2px solid gray;
+  color: gray;
+  cursor: auto;
+}
+.error-box {
+  color: red;
+  font-size: 15px;
+}
 .button-box {
   display: flex;
   justify-content: space-between;
