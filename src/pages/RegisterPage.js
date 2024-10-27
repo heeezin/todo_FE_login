@@ -32,6 +32,8 @@ const RegisterPage = () => {
       }
     } catch (error) {
       setError(error.message)
+    } finally {
+      setLoading(false)
     }
   }
   return (

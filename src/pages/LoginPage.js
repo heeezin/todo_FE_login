@@ -31,6 +31,8 @@ const LoginPage = ({user,setUser}) => {
       throw new Error(res.data.message)
     } catch (error) {
       setError(error.message)
+    } finally {
+      setLoading(false)
     }
   }
   if(user) {
