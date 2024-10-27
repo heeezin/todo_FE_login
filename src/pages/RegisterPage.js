@@ -9,11 +9,12 @@ const RegisterPage = () => {
   const [password,setPassword] = useState('')
   const [secpassword,setSecPassword] = useState('')
   const [error,setError] = useState('')
+  const [loading, setLoading] = useState(false)
   const navigate = useNavigate()
 
   const handleSubmit = async (e) =>{
     e.preventDefault()
-    
+    setLoading(true)
     try {
       if (!name || !email || !password || !secpassword) {
         setError('필수 정보를 모두 입력해 주세요.');
@@ -58,8 +59,8 @@ const RegisterPage = () => {
         </Form.Group>
         <div className="error-box">{error && <div>{error}</div>}</div>
         <div className="button-box">
-          <button className="button-primary" type="submit">
-            회원가입
+          <button className="button-primary" type="submit" disabled={loading}>
+            {loading ? 'Signing up..' : 'Sign up'}
           </button>
           <span>계정이 있다면? <Link to="/login">로그인 하기</Link></span>
         </div>

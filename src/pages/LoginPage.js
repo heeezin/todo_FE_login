@@ -8,6 +8,7 @@ const LoginPage = ({user,setUser}) => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [error, setError] = useState('')
+  const [loading, setLoading] = useState(false)
   const navigate = useNavigate()
 
   const handleLogin = async (e) => {
@@ -16,6 +17,7 @@ const LoginPage = ({user,setUser}) => {
       setError('이메일과 비밀번호를 입력해 주세요.');
       return; 
     }
+    setLoading(true)
     try {
       const res = await api.post('/user/login', { email, password })
       
@@ -51,8 +53,8 @@ const LoginPage = ({user,setUser}) => {
           {error && <div>{error}</div>}
         </div>
         <div className="button-box">
-          <button type="submit" className="button-primary">
-            Login
+          <button type="submit" className="button-primary" disabled={loading}>
+            {loading ? 'Logging in..': 'Login'}
           </button>
           <span>
             계정이 없다면? <Link to="/register">회원가입 하기</Link>
